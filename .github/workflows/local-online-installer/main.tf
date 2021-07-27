@@ -21,12 +21,12 @@ provider "google" {
 }
 
 // Online Install
-resource "google_compute_network" "vpc_network_online_local_install" {
+resource "google_compute_network" "vpc_network_local_online_install" {
   name = "terraform-network-online-install"
 }
 
-resource "google_compute_instance" "vm_instance_online_local_install" {
-  name         = "mirror-ci-rhel-online-local-install"
+resource "google_compute_instance" "vm_instance_local_online_install" {
+  name         = "mirror-ci-rhel-local-online-install"
   machine_type = "e2-medium"
 
   boot_disk {
@@ -35,10 +35,10 @@ resource "google_compute_instance" "vm_instance_online_local_install" {
     }
   }
 
-  tags = ["mirror-ci-rhel-online-local-install"]
+  tags = ["mirror-ci-rhel-local-online-install"]
 
   network_interface {
-    network = google_compute_network.vpc_network_online_local_install.name
+    network = google_compute_network.vpc_network_local_online_install.name
     access_config {
     }
   }
@@ -48,9 +48,9 @@ resource "google_compute_instance" "vm_instance_online_local_install" {
   }
 }
 
-resource "google_compute_firewall" "ssh-rule-online-local-install" {
-  name    = "vm-ssh-online-local-install"
-  network = google_compute_network.vpc_network_online_local_install.name
+resource "google_compute_firewall" "ssh-rule-local-online-install" {
+  name    = "vm-ssh-local-online-install"
+  network = google_compute_network.vpc_network_local_online_install.name
   allow {
     protocol = "tcp"
     ports    = ["22", "80", "8080", "443", "8443"]
@@ -58,10 +58,10 @@ resource "google_compute_firewall" "ssh-rule-online-local-install" {
   allow {
     protocol = "icmp"
   }
-  target_tags   = ["mirror-ci-rhel-online-local-install"]
+  target_tags   = ["mirror-ci-rhel-local-online-install"]
   source_ranges = ["0.0.0.0/0"]
 }
 
-output "ip-online-local-install" {
-  value = google_compute_instance.vm_instance_online_local_install.network_interface.0.access_config.0.nat_ip
+output "ip-local-online-install" {
+  value = google_compute_instance.vm_instance_local_online_install.network_interface.0.access_config.0.nat_ip
 }
