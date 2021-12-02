@@ -188,7 +188,7 @@ func install() {
 
 	// Run playbook
 	log.Printf("Running install playbook. This may take some time. To see playbook output run the installer with -v (verbose) flag.")
-	podmanCmd := fmt.Sprintf(`podman run `+
+	podmanCmd := fmt.Sprintf(`sudo podman run `+
 		`--rm --interactive --tty `+
 		`--workdir /runner/project `+
 		`--net host `+
