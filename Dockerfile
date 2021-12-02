@@ -80,8 +80,8 @@ COPY --from=cli /cli/openshift-mirror-registry .
 RUN tar -cvf image-archive.tar quay.tar redis.tar postgres.tar
 
 # Bundle OMR archive
-RUN tar -czvf openshift-mirror-registry-offline.tar.gz image-archive.tar execution-environment.tar openshift-mirror-registry
+RUN tar -czvf openshift-mirror-registry.tar.gz image-archive.tar execution-environment.tar openshift-mirror-registry
 
 # Extract bundle to final release image
 FROM registry.redhat.io/ubi8:latest AS release
-COPY --from=build openshift-mirror-registry-offline.tar.gz openshift-mirror-registry-offline.tar.gz
+COPY --from=build openshift-mirror-registry.tar.gz openshift-mirror-registry.tar.gz

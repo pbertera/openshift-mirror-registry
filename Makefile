@@ -20,7 +20,7 @@ build-online-zip: build-ansible-ee build-golang-executable
 build-offline-zip: 
 	sudo podman build -t omr:${RELEASE_VERSION} .
 	sudo podman run --name omr-${RELEASE_VERSION} omr:${RELEASE_VERSION}
-	sudo podman cp omr-${RELEASE_VERSION}:/openshift-mirror-registry-offline.tar.gz .
+	sudo podman cp omr-${RELEASE_VERSION}:/openshift-mirror-registry.tar.gz .
 
 release:
 	git add .
