@@ -16,19 +16,19 @@
   when: p.stat.exists and local_install == "false"
 
 - name: Unpack Images if /runner/image-archive.tar exists
-  command: "tar -xvf /etc/quay-install/image-archive.tar"
+  command: tar -xvf /etc/quay-install/image-archive.tar -C /etc/quay-install/
   when: p.stat.exists and local_install == "false"
 
 - name: Checking for Redis Archive
-  local_action: stat path=/runner/image-archive.tar
+  local_action: stat path=/etc/quay-install/redis.tar
   register: redis
 
 - name: Checking for Quay Archive
-  local_action: stat path=/runner/image-archive.tar
+  local_action: stat path=/etc/quay-install/quay.tar
   register: quay
 
 - name: Checking for Postgres Archive
-  local_action: stat path=/runner/image-archive.tar
+  local_action: stat path=/etc/quay-install/postgres.tar
   register: postgres
 
 - name: Loading Redis if /runner/redis.tar exists
