@@ -128,7 +128,7 @@ func install() {
 				redisImport.Stderr = os.Stderr
 				redisImport.Stdout = os.Stdout
 			}
-			log.Debug("Importing Redis with command: ", cmd)
+			log.Debug("Importing Redis with command: ", redisImport)
 			err = redisImport.Run()
 			check(err)
 
@@ -141,7 +141,7 @@ func install() {
 				postgresImport.Stderr = os.Stderr
 				postgresImport.Stdout = os.Stdout
 			}
-			log.Debug("Importing Postgres with command: ", cmd)
+			log.Debug("Importing Postgres with command: ", postgresImport)
 			err = postgresImport.Run()
 			check(err)
 
@@ -154,7 +154,7 @@ func install() {
 				quayImport.Stderr = os.Stderr
 				quayImport.Stdout = os.Stdout
 			}
-			log.Debug("Importing Quay with command: ", cmd)
+			log.Debug("Importing Quay with command: ", quayImport)
 			err = quayImport.Run()
 			check(err)
 		}
