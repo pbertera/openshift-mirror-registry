@@ -54,7 +54,7 @@
 - name: Pull Quay image
   containers.podman.podman_image:
     name: "{{ quay_image }}"
-  when: quay_image is not defined
+  when: quay_image.rc !== 0
 
 - name: Start Quay service
   systemd:

@@ -11,7 +11,7 @@
 - name: Pull Redis image
   containers.podman.podman_image:
     name: "{{ redis_image }}"
-  when: redis_image is not defined
+  when: redis_image.rc !== 0
 
 - name: Start Redis service
   systemd:
