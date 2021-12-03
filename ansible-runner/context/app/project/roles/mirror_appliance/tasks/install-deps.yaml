@@ -1,13 +1,10 @@
-- name: Sleep for 30 seconds and continue with play
-  wait_for:
-    timeout: 30
-  
 - name: Installing Podman
   package:
     name: "{{ yum_packages }}"
     state: present
   when: yum_packages is defined
   tags: yum
+  become: yes
 
 - name: Add IP address of all hosts to all hosts
   lineinfile:
