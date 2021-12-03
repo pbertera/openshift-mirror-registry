@@ -10,7 +10,7 @@ build-ansible-ee:
 
 build-golang-executable:
 	sudo podman run --rm -v ${PWD}:/usr/src:Z -w /usr/src docker.io/golang:1.16 go build -v \
-	-ldflags "-X 'github.com/quay/openshift-mirror-registry/cmd.quayImage=${QUAY_IMAGE}' -X 'github.com/quay/openshift-mirror-registry/cmd.redisImage=${REDIS_IMAGE}' -X 'github.com/quay/openshift-mirror-registry/cmd.postgresImage=${POSTGRES_IMAGE}'" \
+	-ldflags "-X github.com/quay/openshift-mirror-registry/cmd.eeImage=${EE_IMAGE} -X 'github.com/quay/openshift-mirror-registry/cmd.quayImage=${QUAY_IMAGE}' -X 'github.com/quay/openshift-mirror-registry/cmd.redisImage=${REDIS_IMAGE}' -X 'github.com/quay/openshift-mirror-registry/cmd.postgresImage=${POSTGRES_IMAGE}'" \
 	-o openshift-mirror-registry;
 
 build-online-zip: build-ansible-ee build-golang-executable 
