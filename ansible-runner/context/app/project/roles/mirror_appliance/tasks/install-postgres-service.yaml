@@ -18,6 +18,7 @@
 - name: Check if Postgres image is loaded
   command: podman inspect --type=image {{ postgres_image }}
   register: pg_image
+  ignore_errors: yes
 
 - name: Pull Postgres image
   containers.podman.podman_image:
